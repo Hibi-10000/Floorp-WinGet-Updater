@@ -1,0 +1,1 @@
+# Floorp-WinGet-Updater
