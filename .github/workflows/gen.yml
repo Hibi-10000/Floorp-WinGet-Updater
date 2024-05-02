@@ -1,0 +1,37 @@
+name: Generate Manifest
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version'
+        type: string
+        required: true
+      release-note-url:
+        description: 'Release Note URL'
+        type: string
+        required: true
+      release-note-url-ja:
+        description: 'Release Note (JA) URL'
+        type: string
+        required: true
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Replace
+        run: |
+          sed -i 's/${version}/${{ inputs.version }}/g' Ablaze.Floorp.installer.yaml
+          sed -i 's/${version}/${{ inputs.version }}/' Ablaze.Floorp.locale.en-US.yaml
+          sed -i 's/${version}/${{ inputs.version }}/' Ablaze.Floorp.locale.ja-JP.yaml
+          sed -i 's/${version}/${{ inputs.version }}/' Ablaze.Floorp.yaml
+          sed -i s@'${releasenote-en}'@'${{ inputs.release-note-url }}'@ Ablaze.Floorp.locale.en-US.yaml
+          sed -i s@'${releasenote-ja}'@'${{ inputs.release-note-url-ja }}'@ Ablaze.Floorp.locale.ja-JP.yaml
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: manifest
+          path: ./*.yaml
