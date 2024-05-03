@@ -2,6 +2,11 @@ name: PR
 
 on:
   workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version'
+        type: string
+        required: true
 
 jobs:
   commit:
@@ -32,3 +37,8 @@ jobs:
           git pull upstream master
           echo "::endgroup::"
           git push
+
+      - name: Create branch
+        run: |
+          git branch Ablaze.Floorp-${{ inputs.version }}
+          git switch Ablaze.Floorp-${{ inputs.version }}
