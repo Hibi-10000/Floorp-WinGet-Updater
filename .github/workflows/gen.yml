@@ -36,9 +36,9 @@ jobs:
       - name: Get SHA256
         id: sha256
         run: |
-          curl -OL https://github.com/Floorp-Projects/Floorp/releases/download/v${{ inputs.version }}/floorp-win64.installer.exe
+          curl -fOL https://github.com/Floorp-Projects/Floorp/releases/download/v${{ inputs.version }}/floorp-win64.installer.exe
           echo "sha256-x64=$(sha256sum floorp-win64.installer.exe | cut -c 1-64 | tr '[:lower:]' '[:upper:]')" >> $GITHUB_OUTPUT
-          curl -OL https://github.com/Floorp-Projects/Floorp/releases/download/v${{ inputs.version }}/floorp-win32.installer.exe
+          curl -fOL https://github.com/Floorp-Projects/Floorp/releases/download/v${{ inputs.version }}/floorp-win32.installer.exe
           echo "sha256-x86=$(sha256sum floorp-win32.installer.exe | cut -c 1-64 | tr '[:lower:]' '[:upper:]')" >> $GITHUB_OUTPUT
 
       - name: Get ReleaseDate
