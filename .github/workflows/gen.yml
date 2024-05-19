@@ -1,4 +1,4 @@
-name: Generate Manifest
+name: Generate Stable Manifest
 
 on:
   workflow_dispatch:

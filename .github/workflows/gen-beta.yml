@@ -1,0 +1,42 @@
+name: Generate Daylight Manifest
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version'
+        type: string
+        required: true
+  workflow_call:
+    inputs:
+      version:
+        type: string
+        required: true
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get SHA256
+        id: sha256
+        run: |
+          curl -fOL https://github.com/Floorp-Projects/Floorp/releases/download/beta/floorp-win64.installer.exe
+          echo "sha256-x64=$(sha256sum floorp-win64.installer.exe | cut -c 1-64 | tr '[:lower:]' '[:upper:]')" >> $GITHUB_OUTPUT
+
+      - name: Replace
+        run: |
+          sed -i 's/${version}/${{ inputs.version }}/' ./daylight/Ablaze.Floorp.Daylight.installer.yaml
+          sed -i 's/${version}/${{ inputs.version }}/' ./daylight/Ablaze.Floorp.Daylight.locale.en-US.yaml
+          sed -i 's/${version}/${{ inputs.version }}/' ./daylight/Ablaze.Floorp.Daylight.locale.ja-JP.yaml
+          sed -i 's/${version}/${{ inputs.version }}/' ./daylight/Ablaze.Floorp.Daylight.yaml
+          sed -i 's/${x64sha}/${{ steps.sha256.outputs.sha256-x64 }}/' ./daylight/Ablaze.Floorp.Daylight.installer.yaml
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: manifest
+          path: |
+            ./daylight/Ablaze.Floorp.Daylight.installer.yaml
+            ./daylight/Ablaze.Floorp.Daylight.locale.*.yaml
+            ./daylight/Ablaze.Floorp.Daylight.yaml
