@@ -69,6 +69,7 @@ jobs:
         run: |
           git config --global user.email "${{ vars.GIT_EMAIL }}"
           git config --global user.name "${{ vars.GIT_NAME }}"
+          git config --global core.autocrlf false
           git add .
           git commit -m "New version: Ablaze.Floorp version ${{ inputs.version }}"
           git push --set-upstream origin Ablaze.Floorp-${{ inputs.version }}
