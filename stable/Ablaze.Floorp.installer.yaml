@@ -21,6 +21,7 @@ InstallModes:
 - silent
 - silentWithProgress
 UpgradeBehavior: install
+ElevationRequirement: elevatesSelf
 Installers:
 - Architecture: x64
   InstallerUrl: https://github.com/Floorp-Projects/Floorp/releases/download/v${version}/floorp-win64.installer.exe
