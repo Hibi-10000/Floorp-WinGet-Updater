@@ -53,14 +53,20 @@ jobs:
             | cut -c 1-10 \
           )" >> $GITHUB_OUTPUT
 
+      - name: Replace ReleaseNote URL
+        id: releasenote
+        run: |
+          echo "url=$(echo ${{ inputs.release-note-url }} | sed 's@[0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\}/$@@')" >> $GITHUB_OUTPUT
+          echo "url-ja=$(echo ${{ inputs.release-note-url-ja }} | sed 's@[0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\}/$@@')" >> $GITHUB_OUTPUT
+
       - name: Replace
         run: |
           sed -i 's/${version}/${{ inputs.version }}/g' ./stable/Ablaze.Floorp.installer.yaml
           sed -i 's/${version}/${{ inputs.version }}/' ./stable/Ablaze.Floorp.locale.en-US.yaml
           sed -i 's/${version}/${{ inputs.version }}/' ./stable/Ablaze.Floorp.locale.ja-JP.yaml
           sed -i 's/${version}/${{ inputs.version }}/' ./stable/Ablaze.Floorp.yaml
-          sed -i s@'${releasenote-en}'@'${{ inputs.release-note-url }}'@ ./stable/Ablaze.Floorp.locale.en-US.yaml
-          sed -i s@'${releasenote-ja}'@'${{ inputs.release-note-url-ja }}'@ ./stable/Ablaze.Floorp.locale.ja-JP.yaml
+          sed -i 's@${releasenote-en}@${{ steps.releasenote.outputs.url }}@' ./stable/Ablaze.Floorp.locale.en-US.yaml
+          sed -i 's@${releasenote-ja}@${{ steps.releasenote.outputs.url-ja }}@' ./stable/Ablaze.Floorp.locale.ja-JP.yaml
           sed -i 's/${releasedate}/${{ steps.date.outputs.releasedate }}/' ./stable/Ablaze.Floorp.installer.yaml
           sed -i 's/${x64sha}/${{ steps.sha256.outputs.sha256-x64 }}/' ./stable/Ablaze.Floorp.installer.yaml
           sed -i 's/${x86sha}/${{ steps.sha256.outputs.sha256-x86 }}/' ./stable/Ablaze.Floorp.installer.yaml
