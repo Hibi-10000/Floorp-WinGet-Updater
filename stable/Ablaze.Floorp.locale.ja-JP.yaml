@@ -9,7 +9,7 @@ PrivacyUrl: https://docs.ablaze.one/floorp_privacy_policy/
 Author: Ablaze
 PackageName: Ablaze Floorp
 PackageUrl: https://floorp.app/ja/
-License: Mozilla Public License Version 2.0 & Floorp Shared Source License
+License: Mozilla Public License Version 2.0
 LicenseUrl: https://github.com/Floorp-Projects/Floorp/blob/ESR115/LICENSE/
 ShortDescription: FloorpはFirefoxをベースに、ウェブの公開性、匿名性、安全性、機能性のバランスにフォーカスを当てた日本製のウェブブラウザーです。
 Tags:
