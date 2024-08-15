@@ -10,7 +10,7 @@ Author: Ablaze
 PackageName: Ablaze Floorp
 PackageUrl: https://floorp.app/en/
 License: Mozilla Public License Version 2.0
-LicenseUrl: https://github.com/Floorp-Projects/Floorp/blob/ESR115/LICENSE/
+LicenseUrl: https://github.com/Floorp-Projects/Floorp/blob/ESR128/LICENSE/
 ShortDescription: Floorp is built on Firefox and was built in Japan and is a new browser with excellent privacy & flexibility.
 Moniker: floorp
 Tags:
