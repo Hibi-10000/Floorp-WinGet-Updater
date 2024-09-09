@@ -23,5 +23,8 @@ Installers:
 - Architecture: x64
   InstallerUrl: https://github.com/Floorp-Projects/Floorp/releases/download/beta/floorp-win64.installer.exe
   InstallerSha256: ${x64sha}
+  AppsAndFeaturesEntries:
+  - DisplayName: Floorp Daylight (x64 en-US)
+    ProductCode: Floorp Daylight ${version} (x64 en-US)
 ManifestType: installer
 ManifestVersion: 1.6.0

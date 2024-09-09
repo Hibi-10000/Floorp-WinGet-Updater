@@ -27,7 +27,7 @@ jobs:
 
       - name: Replace
         run: |
-          sed -i 's/${version}/${{ inputs.version }}/' ./daylight/Ablaze.Floorp.Daylight.installer.yaml
+          sed -i 's/${version}/${{ inputs.version }}/g' ./daylight/Ablaze.Floorp.Daylight.installer.yaml
           sed -i 's/${version}/${{ inputs.version }}/' ./daylight/Ablaze.Floorp.Daylight.locale.en-US.yaml
           sed -i 's/${version}/${{ inputs.version }}/' ./daylight/Ablaze.Floorp.Daylight.locale.ja-JP.yaml
           sed -i 's/${version}/${{ inputs.version }}/' ./daylight/Ablaze.Floorp.Daylight.yaml
