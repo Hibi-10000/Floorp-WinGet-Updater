@@ -4,11 +4,11 @@ PackageVersion: ${version}
 PackageLocale: en-US
 Publisher: Ablaze
 PublisherUrl: https://ablaze.one/
-PublisherSupportUrl: https://support.ablaze.one/articles/floorp/
+PublisherSupportUrl: https://docs.floorp.app/
 PrivacyUrl: https://docs.ablaze.one/floorp_privacy_policy/
 Author: Ablaze
 PackageName: Ablaze Floorp
-PackageUrl: https://floorp.app/en/
+PackageUrl: https://floorp.app/
 License: Mozilla Public License Version 2.0
 LicenseUrl: https://github.com/Floorp-Projects/Floorp/blob/ESR128/LICENSE/
 ShortDescription: Floorp is built on Firefox and was built in Japan and is a new browser with excellent privacy & flexibility.
