@@ -8,22 +8,12 @@ on:
         description: 'Version'
         type: string
         required: true
-      release-note-url:
-        description: 'Release Note URL'
-        type: string
-        required: true
-      release-note-url-ja:
-        description: 'Release Note (JA) URL'
-        type: string
-        required: true
 
 jobs:
   generate:
     uses: ./.github/workflows/gen.yml
     with:
       version: ${{ inputs.version }}
-      release-note-url: ${{ inputs.release-note-url }}
-      release-note-url-ja: ${{ inputs.release-note-url-ja }}
 
   commit:
     needs: generate
