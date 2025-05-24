@@ -36,6 +36,7 @@ InstallerSwitches:
   InstallLocation: /InstallDirectoryPath="<INSTALLPATH>"
 UpgradeBehavior: install
 ElevationRequirement: elevatesSelf
+RequireExplicitUpgrade: ${isrc}
 Dependencies:
   PackageDependencies:
   - PackageIdentifier: Microsoft.VCRedist.2015+.x64
