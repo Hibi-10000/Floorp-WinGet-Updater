@@ -31,6 +31,6 @@ Tags:
 - open-source
 - web
 - web-browser
-ReleaseNotesUrl: https://blog.floorp.app/en/release/${version}
+ReleaseNotesUrl: https://blog.floorp.app/en/release/${releasenoteversion}
 ManifestType: defaultLocale
 ManifestVersion: 1.10.0

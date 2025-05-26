@@ -13,6 +13,10 @@ on:
         type: boolean
         required: false
         default: false
+      releasenoteurl_version:
+        description: 'Version in ReleaseNoteURL'
+        type: string
+        required: false
 
 jobs:
   generate:
@@ -20,6 +24,7 @@ jobs:
     with:
       version: ${{ inputs.version }}
       is_rc: ${{ inputs.is_rc }}
+      releasenoteurl_version: ${{ inputs.releasenoteurl_version }}
 
   commit:
     needs: generate
