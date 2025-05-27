@@ -12,10 +12,6 @@ on:
         type: boolean
         required: false
         default: false
-      releasenoteurl_version:
-        description: 'Version in ReleaseNoteURL'
-        type: string
-        required: false
   workflow_call:
     inputs:
       version:
@@ -26,10 +22,6 @@ on:
         type: boolean
         required: false
         default: false
-      releasenoteurl_version:
-        description: 'Version in ReleaseNoteURL'
-        type: string
-        required: false
 
 jobs:
   generate:
@@ -58,14 +50,12 @@ jobs:
       - name: Replace
         run: |
           sed -i 's/${version}/${{ inputs.version }}/g' ./stable/Ablaze.Floorp.installer.yaml
-          sed -i 's/${version}/${{ inputs.version }}/' ./stable/Ablaze.Floorp.locale.en-US.yaml
-          sed -i 's/${version}/${{ inputs.version }}/' ./stable/Ablaze.Floorp.locale.ja-JP.yaml
+          sed -i 's/${version}/${{ inputs.version }}/g' ./stable/Ablaze.Floorp.locale.en-US.yaml
+          sed -i 's/${version}/${{ inputs.version }}/g' ./stable/Ablaze.Floorp.locale.ja-JP.yaml
           sed -i 's/${version}/${{ inputs.version }}/' ./stable/Ablaze.Floorp.yaml
           sed -i 's/${releasedate}/${{ steps.date.outputs.releasedate }}/' ./stable/Ablaze.Floorp.installer.yaml
           sed -i 's/${isrc}/${{ inputs.is_rc }}/' ./stable/Ablaze.Floorp.installer.yaml
           sed -i 's/${x64sha}/${{ steps.sha256.outputs.sha256-x64 }}/' ./stable/Ablaze.Floorp.installer.yaml
-          sed -i 's/${version}/${{ inputs.releasenoteurl_version || inputs.version }}/' ./stable/Ablaze.Floorp.locale.en-US.yaml
-          sed -i 's/${version}/${{ inputs.releasenoteurl_version || inputs.version }}/' ./stable/Ablaze.Floorp.locale.ja-JP.yaml
 
       - uses: actions/upload-artifact@v4
         with:
