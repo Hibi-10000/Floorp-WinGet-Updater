@@ -8,18 +8,12 @@ on:
         description: 'Version'
         type: string
         required: true
-      is_rc:
-        description: 'Release Candidate'
-        type: boolean
-        required: false
-        default: false
 
 jobs:
   generate:
     uses: ./.github/workflows/gen.yml
     with:
       version: ${{ inputs.version }}
-      is_rc: ${{ inputs.is_rc }}
 
   commit:
     needs: generate
