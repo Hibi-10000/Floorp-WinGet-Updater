@@ -78,4 +78,5 @@ jobs:
             --head ${{ github.repository_owner }}:Ablaze.Floorp.Daylight-${{ inputs.version }} \
             --title "New version: Ablaze.Floorp.Daylight version ${{ inputs.version }}" \
             --body "### Pull request created by [Floorp-WinGet-Updater](https://github.com/${{ github.repository }}) workflow run [#${{ github.run_number }}](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/attempts/${{ github.run_attempt }})" \
+            --no-maintainer-edit \
             > $GITHUB_STEP_SUMMARY
