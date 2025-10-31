@@ -8,12 +8,18 @@ on:
         description: 'Version'
         type: string
         required: true
+      releasenote-url-version:
+        description: 'Release Note URL Version'
+        type: string
+        required: false
+        default: ''
 
 jobs:
   generate:
     uses: ./.github/workflows/gen.yml
     with:
       version: ${{ inputs.version }}
+      releasenote-url-version: ${{ inputs.releasenote-url-version }}
 
   commit:
     needs: generate

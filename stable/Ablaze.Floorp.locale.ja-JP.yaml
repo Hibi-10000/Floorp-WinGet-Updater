@@ -30,6 +30,6 @@ Tags:
 - open-source
 - web
 - web-browser
-ReleaseNotesUrl: https://blog.floorp.app/ja/release/${version}
+ReleaseNotesUrl: https://blog.floorp.app/ja/release/${version-releasenote}
 ManifestType: locale
 ManifestVersion: 1.10.0
