@@ -5,7 +5,11 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Version'
+        description: 'Version (e.g., 12.6.0@145.0.1)'
+        type: string
+        required: true
+      tag-version:
+        description: 'Tag Version (e.g., 12.6.0)'
         type: string
         required: true
       releasenote-url-version:
@@ -19,6 +23,7 @@ jobs:
     uses: ./.github/workflows/gen.yml
     with:
       version: ${{ inputs.version }}
+      tag-version: ${{ inputs.tag-version }}
       releasenote-url-version: ${{ inputs.releasenote-url-version }}
 
   commit:
@@ -53,8 +58,8 @@ jobs:
 
       - name: Create branch
         run: |
-          git branch Ablaze.Floorp-${{ inputs.version }}
-          git switch Ablaze.Floorp-${{ inputs.version }}
+          git branch Ablaze.Floorp-${{ inputs.tag-version }}
+          git switch Ablaze.Floorp-${{ inputs.tag-version }}
 
       - name: Download a Build Artifact
         uses: actions/download-artifact@v4
@@ -69,8 +74,8 @@ jobs:
           git config --global core.autocrlf false
           git add .
           git commit -m "New version: Ablaze.Floorp version ${{ inputs.version }}"
-          git push --set-upstream origin Ablaze.Floorp-${{ inputs.version }}
-          echo "${{ github.server_url }}/${{ github.repository_owner }}/winget-pkgs/tree/Ablaze.Floorp-${{ inputs.version }}/" > $GITHUB_STEP_SUMMARY
+          git push --set-upstream origin Ablaze.Floorp-${{ inputs.tag-version }}
+          echo "${{ github.server_url }}/${{ github.repository_owner }}/winget-pkgs/tree/Ablaze.Floorp-${{ inputs.tag-version }}/" > $GITHUB_STEP_SUMMARY
 
   pr:
     needs: commit
@@ -85,7 +90,7 @@ jobs:
           gh pr create \
             --repo https://github.com/microsoft/winget-pkgs \
             --base master \
-            --head ${{ github.repository_owner }}:Ablaze.Floorp-${{ inputs.version }} \
+            --head ${{ github.repository_owner }}:Ablaze.Floorp-${{ inputs.tag-version }} \
             --title "New version: Ablaze.Floorp version ${{ inputs.version }}" \
             --body "### Pull request created by [Floorp-WinGet-Updater](https://github.com/${{ github.repository }}) workflow run [#${{ github.run_number }}](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/attempts/${{ github.run_attempt }})" \
             --no-maintainer-edit \

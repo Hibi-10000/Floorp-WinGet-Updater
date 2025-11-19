@@ -4,7 +4,11 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Version'
+        description: 'Version (e.g., 12.6.0@145.0.1)'
+        type: string
+        required: true
+      tag-version:
+        description: 'Tag Version (e.g., 12.6.0)'
         type: string
         required: true
       releasenote-url-version:
@@ -14,6 +18,9 @@ on:
   workflow_call:
     inputs:
       version:
+        type: string
+        required: true
+      tag-version:
         type: string
         required: true
       releasenote-url-version:
@@ -29,7 +36,7 @@ jobs:
       - name: Get SHA256
         id: sha256
         run: |
-          curl -fOL https://github.com/Floorp-Projects/Floorp/releases/download/v${{ inputs.version }}/floorp-windows-x86_64.installer.exe
+          curl -fOL https://github.com/Floorp-Projects/Floorp/releases/download/v${{ inputs.tag-version }}/floorp-windows-x86_64.installer.exe
           echo "sha256-x64=$(sha256sum floorp-windows-x86_64.installer.exe | cut -c 1-64 | tr '[:lower:]' '[:upper:]')" >> $GITHUB_OUTPUT
 
       - name: Get ReleaseDate
@@ -39,7 +46,7 @@ jobs:
             curl -L \
               -H "Accept: application/vnd.github+json" \
               -H "Authorization: Bearer ${{ github.token }}" \
-              https://api.github.com/repos/Floorp-Projects/Floorp/releases/tags/v${{ inputs.version }} \
+              https://api.github.com/repos/Floorp-Projects/Floorp/releases/tags/v${{ inputs.tag-version }} \
             | jq -r '.published_at' \
             | cut -c 1-10 \
           )" >> $GITHUB_OUTPUT
@@ -51,9 +58,10 @@ jobs:
           sed -i 's/${version}/${{ inputs.version }}/' ./stable/Ablaze.Floorp.locale.ja-JP.yaml
           sed -i 's/${version}/${{ inputs.version }}/' ./stable/Ablaze.Floorp.yaml
           sed -i 's/${releasedate}/${{ steps.date.outputs.releasedate }}/' ./stable/Ablaze.Floorp.installer.yaml
+          sed -i 's/${tagversion}/${{ inputs.tag-version }}/g' ./stable/Ablaze.Floorp.installer.yaml
           sed -i 's/${x64sha}/${{ steps.sha256.outputs.sha256-x64 }}/' ./stable/Ablaze.Floorp.installer.yaml
-          sed -i 's/${version-releasenote}/${{ inputs.releasenote-url-version || inputs.version }}/' ./stable/Ablaze.Floorp.locale.en-US.yaml
-          sed -i 's/${version-releasenote}/${{ inputs.releasenote-url-version || inputs.version }}/' ./stable/Ablaze.Floorp.locale.ja-JP.yaml
+          sed -i 's/${version-releasenote}/${{ inputs.releasenote-url-version || inputs.tag-version }}/' ./stable/Ablaze.Floorp.locale.en-US.yaml
+          sed -i 's/${version-releasenote}/${{ inputs.releasenote-url-version || inputs.tag-version }}/' ./stable/Ablaze.Floorp.locale.ja-JP.yaml
 
       - uses: actions/upload-artifact@v4
         with:
