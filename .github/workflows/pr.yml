@@ -4,14 +4,15 @@ run-name: PR Stable ${{ inputs.version }}
 on:
   workflow_dispatch:
     inputs:
-      version:
-        description: 'Version (e.g., 12.6.0@145.0.1)'
-        type: string
-        required: true
       tag-version:
         description: 'Tag Version (e.g., 12.6.0)'
         type: string
         required: true
+      version:
+        description: 'Version (e.g., 12.6.0@145.0.1)'
+        type: string
+        required: false
+        default: ''
       releasenote-url-version:
         description: 'Release Note URL Version'
         type: string
@@ -22,8 +23,8 @@ jobs:
   generate:
     uses: ./.github/workflows/gen.yml
     with:
-      version: ${{ inputs.version }}
       tag-version: ${{ inputs.tag-version }}
+      version: ${{ inputs.version }}
       releasenote-url-version: ${{ inputs.releasenote-url-version }}
 
   commit:
@@ -65,7 +66,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: manifest
-          path: manifests/a/Ablaze/Floorp/${{ inputs.version }}
+          path: manifests/a/Ablaze/Floorp/${{ inputs.version || needs.generate.outputs.version }}
 
       - name: Commit & Push
         run: |
@@ -73,12 +74,12 @@ jobs:
           git config --global user.name "${{ vars.GIT_NAME }}"
           git config --global core.autocrlf false
           git add .
-          git commit -m "New version: Ablaze.Floorp version ${{ inputs.version }}"
+          git commit -m "New version: Ablaze.Floorp version ${{ inputs.version || needs.generate.outputs.version }}"
           git push --set-upstream origin Ablaze.Floorp-${{ inputs.tag-version }}
           echo "${{ github.server_url }}/${{ github.repository_owner }}/winget-pkgs/tree/Ablaze.Floorp-${{ inputs.tag-version }}/" > $GITHUB_STEP_SUMMARY
 
   pr:
-    needs: commit
+    needs: [generate, commit]
     runs-on: ubuntu-latest
     environment: 
       name: Deploy-Pull-Request
@@ -91,7 +92,7 @@ jobs:
             --repo https://github.com/microsoft/winget-pkgs \
             --base master \
             --head ${{ github.repository_owner }}:Ablaze.Floorp-${{ inputs.tag-version }} \
-            --title "New version: Ablaze.Floorp version ${{ inputs.version }}" \
+            --title "New version: Ablaze.Floorp version ${{ inputs.version || needs.generate.outputs.version }}" \
             --body "### Pull request created by [Floorp-WinGet-Updater](https://github.com/${{ github.repository }}) workflow run [#${{ github.run_number }}](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/attempts/${{ github.run_attempt }})" \
             --no-maintainer-edit \
             > $GITHUB_STEP_SUMMARY
