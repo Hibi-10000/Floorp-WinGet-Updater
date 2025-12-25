@@ -1,5 +1,5 @@
 name: PR Stable
-run-name: PR Stable ${{ inputs.version }}
+run-name: PR Stable ${{ inputs.tag-version }}
 
 on:
   workflow_dispatch:
