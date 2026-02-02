@@ -44,6 +44,7 @@ jobs:
           echo "version=$( \
             curl -L \
               -H "Accept: application/json" \
+              -H "Authorization: Bearer ${{ github.token }}" \
               https://github.com/Floorp-Projects/Floorp/releases/download/v${{ inputs.tag-version }}/win-meta.json \
             | jq -r '.version_display' \
           )" >> $GITHUB_OUTPUT
