@@ -86,7 +86,7 @@ jobs:
     steps:
       - name: Create Pull Request
         env:
-          GH_TOKEN: ${{ secrets.PAT }}
+          GH_TOKEN: ${{ secrets.PAT_CLASSIC }}
         run: |
           gh pr create \
             --repo https://github.com/microsoft/winget-pkgs \
