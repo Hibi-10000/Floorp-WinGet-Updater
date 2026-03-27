@@ -36,7 +36,7 @@ jobs:
     outputs:
       version: ${{ steps.version.outputs.version }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Get Version
         id: version
@@ -79,7 +79,7 @@ jobs:
           sed -i 's/${version-releasenote}/${{ inputs.releasenote-url-version || inputs.tag-version }}/' ./stable/Ablaze.Floorp.locale.en-US.yaml
           sed -i 's/${version-releasenote}/${{ inputs.releasenote-url-version || inputs.tag-version }}/' ./stable/Ablaze.Floorp.locale.ja-JP.yaml
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: manifest
           path: |

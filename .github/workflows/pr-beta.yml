@@ -19,7 +19,7 @@ jobs:
     needs: generate
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           repository: ${{ github.repository_owner }}/winget-pkgs
           sparse-checkout: |
@@ -47,7 +47,7 @@ jobs:
           mkdir -pv manifests/a/Ablaze/Floorp/Daylight/${{ inputs.version }}
 
       - name: Download a Build Artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: manifest
           path: manifests/a/Ablaze/Floorp/Daylight/${{ inputs.version }}
