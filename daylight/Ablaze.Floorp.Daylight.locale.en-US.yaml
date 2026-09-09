@@ -3,20 +3,20 @@ PackageIdentifier: Ablaze.Floorp.Daylight
 PackageVersion: ${version}
 PackageLocale: en-US
 Publisher: Ablaze
-PublisherUrl: https://ablaze.one/
+PublisherUrl: https://ablaze.one/en/
 PublisherSupportUrl: https://docs.floorp.app/
 Documentations:
 - DocumentLabel: Floorp Docs
   DocumentUrl: https://docs.floorp.app/
 Agreements:
 - AgreementLabel: Terms of Service
-  AgreementUrl: https://floorp.app/en-US/terms
+  AgreementUrl: https://floorp.app/en/terms
 - AgreementLabel: Privacy Policy
-  AgreementUrl: https://floorp.app/en-US/privacy
-PrivacyUrl: https://floorp.app/en-US/privacy
+  AgreementUrl: https://floorp.app/en/privacy
+PrivacyUrl: https://floorp.app/en/privacy
 Author: Floorp Projects
 PackageName: Floorp 12 Daylight
-PackageUrl: https://floorp.app/
+PackageUrl: https://floorp.app/en
 License: Mozilla Public License Version 2.0
 LicenseUrl: https://github.com/Floorp-Projects/Floorp-12/blob/main/LICENSE/
 ShortDescription: Floorp 12 Daylight is a beta version of Floorp 12. Maybe it will not work properly.

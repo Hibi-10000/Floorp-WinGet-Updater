@@ -3,20 +3,20 @@ PackageIdentifier: Ablaze.Floorp.Daylight
 PackageVersion: ${version}
 PackageLocale: ja-JP
 Publisher: Ablaze
-PublisherUrl: https://ablaze.one/
+PublisherUrl: https://ablaze.one/ja/
 PublisherSupportUrl: https://docs.floorp.app/ja/
 Documentations:
 - DocumentLabel: Floorp Docs
   DocumentUrl: https://docs.floorp.app/ja/
 Agreements:
 - AgreementLabel: 利用規約
-  AgreementUrl: https://floorp.app/ja-JP/terms
+  AgreementUrl: https://floorp.app/ja/terms
 - AgreementLabel: プライバシーポリシー
-  AgreementUrl: https://floorp.app/ja-JP/privacy
-PrivacyUrl: https://floorp.app/ja-JP/privacy
+  AgreementUrl: https://floorp.app/ja/privacy
+PrivacyUrl: https://floorp.app/ja/privacy
 Author: Floorp Projects
 PackageName: Floorp 12 Daylight
-PackageUrl: https://floorp.app/
+PackageUrl: https://floorp.app/ja
 License: Mozilla Public License Version 2.0
 LicenseUrl: https://github.com/Floorp-Projects/Floorp-12/blob/main/LICENSE/
 ShortDescription: Floorp 12 Daylight は Floorp 12 のベータ版です。バグや不具合が発生する可能性があります。
