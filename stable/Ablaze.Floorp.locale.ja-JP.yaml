@@ -2,7 +2,6 @@
 PackageIdentifier: Ablaze.Floorp
 PackageVersion: ${version}
 PackageLocale: ja-JP
-Publisher: Ablaze
 PublisherUrl: https://ablaze.one/ja/
 PublisherSupportUrl: https://docs.floorp.app/ja/
 Documentations:
@@ -14,22 +13,8 @@ Agreements:
 - AgreementLabel: プライバシーポリシー
   AgreementUrl: https://floorp.app/ja/privacy
 PrivacyUrl: https://floorp.app/ja/privacy
-Author: Floorp Projects
-PackageName: Ablaze Floorp
 PackageUrl: https://floorp.app/ja
-License: Mozilla Public License Version 2.0
-LicenseUrl: https://github.com/Floorp-Projects/Floorp/blob/main/LICENSE/
 ShortDescription: FloorpはFirefoxをベースに、ウェブの公開性、匿名性、安全性、機能性のバランスにフォーカスを当てた日本製のウェブブラウザーです。
-Tags:
-- browser
-- cross-platform
-- firefox-fork
-- foss
-- gecko
-- internet-browser
-- open-source
-- web
-- web-browser
 ReleaseNotesUrl: https://blog.floorp.app/ja/release/${version-releasenote}
 ManifestType: locale
 ManifestVersion: 1.12.0
