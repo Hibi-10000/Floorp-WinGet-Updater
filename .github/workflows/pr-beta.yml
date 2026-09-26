@@ -65,7 +65,7 @@ jobs:
   pr:
     needs: commit
     runs-on: ubuntu-latest
-    environment: 
+    environment:
       name: Deploy-Pull-Request
     steps:
       - name: Create Pull Request
